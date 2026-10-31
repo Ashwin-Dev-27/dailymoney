@@ -21,11 +21,11 @@ implementation, and verification with captured proof.
 
 ## What was done
 
-1. **Flutter SDK 3.47.8 (stable)** installed to `D:\flutter`
+1. **Flutter SDK 3.47.8 (stable)** installed outside the repository
    - Re-downloaded fresh (previous zip was corrupt); SHA256 verified against the
      official release manifest: `11e19ea3…193eb6e` ✓
-   - Archive was kept temporarily at `D:\tracking\flutter_windows.zip`; deleted after the
-     SDK was verified, freeing 1.8 GB
+   - Archive was kept temporarily in the workspace; deleted after the SDK was
+     verified, freeing 1.8 GB
    - At this stage `flutter doctor`: Flutter ✓, Chrome ✓, web build ✓; the Android SDK
      and Visual Studio C++ toolchain were not installed yet (Android was added later —
      see section 7)
@@ -65,12 +65,12 @@ implementation, and verification with captured proof.
    - Deleted the `windows/` and `web/` platform folders, the stale `build/` output, and
      the `web`/`windows` entries in `.metadata`. Only `android/` remains.
    - Installed the Android toolchain:
-     - Android SDK command-line tools → `D:\android-sdk`
+     - Android SDK command-line tools installed outside the repository
      - `platform-tools`, `platforms;android-36`, `build-tools;36.0.0`
      - All SDK licenses accepted; `flutter doctor` Android toolchain ✓
-     - `JAVA_HOME` changed from the stale JDK 11 path to `C:\Program Files\Java\jdk-21.0.12`
-       (user-level environment variable), `ANDROID_HOME` / `ANDROID_SDK_ROOT` set to
-       `D:\android-sdk`
+     - `JAVA_HOME` changed from the stale JDK 11 path to the JDK 21 installation
+       (user-level environment variable); `ANDROID_HOME` / `ANDROID_SDK_ROOT`
+       set to the Android SDK location
    - App identity: `applicationId` / `namespace` changed from `com.example.dailymoney`
      to **`com.dailymoney.app`**; `MainActivity` moved to the matching package; launcher
      label changed from `dailymoney` to **`DailyMoney`**.

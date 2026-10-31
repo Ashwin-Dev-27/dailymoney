@@ -74,12 +74,9 @@ android/app/src/main/res/drawable/ic_stat_wallet.xml   notification status-bar i
 ## Run it (Android only)
 
 This project targets **Android only**; the `windows/` and `web/` platform folders have
-been removed. You need the Android SDK, platform-tools, and a JDK 17+ (JDK 21 is used
-here). Toolchain paths used on this machine:
-
-- Flutter SDK: `D:\flutter`
-- Android SDK: `D:\android-sdk` (`platforms;android-36`, `build-tools;36.0.0`)
-- JDK: `C:\Program Files\Java\jdk-21.0.12`
+been removed. You need the Flutter SDK, the Android SDK with
+`platforms;android-36` and `build-tools;36.0.0`, and a JDK 17+ (JDK 21 was used
+for development). Install the toolchains outside the repository.
 
 ```bash
 flutter pub get
