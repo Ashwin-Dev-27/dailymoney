@@ -281,6 +281,7 @@ class DailyBudget {
     required UpcomingProvider upcoming,
     required DateTime month,
     DateTime? today,
+    double? budgetOverride,
   }) {
     final now = today ?? DateTime.now();
     final daysInMonth = DateTime(month.year, month.month + 1, 0).day;
@@ -293,7 +294,7 @@ class DailyBudget {
     // month; a past month's report should show what was actually spent.
     final isPast = month.isBefore(DateTime(now.year, now.month));
     final reserved = isPast ? 0.0 : upcoming.reservedForMonth(month);
-    final budget = settings.monthlyBudget;
+    final budget = budgetOverride ?? settings.monthlyBudget;
     final carry = settings.allowancePolicy == AllowancePolicy.carryForward;
 
     for (var day = 1; day <= lastDay; day++) {

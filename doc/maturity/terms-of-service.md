@@ -132,8 +132,8 @@ version, what you expected, what happened, and whether the issue concerns a
 calculation, privacy, security or accessibility. Do not send one-time passwords,
 full bank account numbers or card numbers.
 
-**This beta build does not publish a monitored support contact or a response-time
-target.** A verified support contact must be configured before public release.
+**Support and privacy contact routes are listed on the Support & complaints
+screen. No response-time target is promised unless it is published there.**
 Nothing in this section limits rights you have under mandatory consumer law.
 
 Governing law and the forum for disputes are **not selected** in this draft.

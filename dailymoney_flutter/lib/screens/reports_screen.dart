@@ -43,17 +43,21 @@ class _ReportsScreenState extends State<ReportsScreen> {
     final now = DateTime.now();
     final isPast = _month.isBefore(monthOf(now));
 
+    final recordedBudget = settings.budgetForMonth(_month);
+    final budget = recordedBudget ?? settings.monthlyBudget;
+    final budgetFallback = recordedBudget == null && budget > 0;
+
     final rows = DailyBudget.reportRows(
       settings: settings,
       transactions: txs.all,
       upcoming: upcoming,
       month: _month,
       today: now,
+      budgetOverride: budget,
     );
     final income = rows.fold(0.0, (a, r) => a + r.income);
     final expense = rows.fold(0.0, (a, r) => a + r.expense);
     final reserved = isPast ? 0.0 : upcoming.reservedForMonth(_month);
-    final budget = settings.monthlyBudget;
     final hasBudget = budget > 0;
     final monthlyLeft = budget - expense - reserved;
     final daysTracked = rows.where((r) => r.hadExpense).length;
@@ -101,6 +105,7 @@ class _ReportsScreenState extends State<ReportsScreen> {
           _PerformanceCard(
             hasBudget: hasBudget,
             budget: budget,
+            budgetFallback: budgetFallback,
             expense: expense,
             reserved: reserved,
             monthlyLeft: monthlyLeft,
@@ -403,6 +408,7 @@ class _PerformanceCard extends StatelessWidget {
   const _PerformanceCard({
     required this.hasBudget,
     required this.budget,
+    required this.budgetFallback,
     required this.expense,
     required this.reserved,
     required this.monthlyLeft,
@@ -413,6 +419,10 @@ class _PerformanceCard extends StatelessWidget {
 
   final bool hasBudget;
   final double budget;
+
+  /// True when this month has no recorded budget and the current setting is
+  /// being shown as a clearly labelled fallback.
+  final bool budgetFallback;
   final double expense;
   final double reserved;
   final double monthlyLeft;
@@ -465,6 +475,18 @@ class _PerformanceCard extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 12),
+            if (budgetFallback) ...[
+              Text(
+                'No budget was recorded for this month. Showing your current '
+                'budget of ${fmtMoney(budget, currencyCode)}.',
+                style: TextStyle(
+                  fontSize: 11.5,
+                  height: 1.45,
+                  color: scheme.outline,
+                ),
+              ),
+              const SizedBox(height: 8),
+            ],
             if (!hasBudget)
               Text(
                 'No monthly budget set. Recorded spending is still shown below.',

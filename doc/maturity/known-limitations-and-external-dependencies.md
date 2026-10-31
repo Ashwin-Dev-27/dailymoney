@@ -79,10 +79,10 @@
     notification permission. The listener can technically read notifications
     from many apps; DailyMoney filters and stores only payment-like snippets,
     but the operating-system grant is broad.
-21. **Pending snippets are briefly plaintext.** The native listener writes to a
-    plaintext app-private queue before the Dart side imports it into encrypted
-    storage. The queue is cleared on the next app open and discarded if payment
-    detection is off.
+21. **Capture queue is Keystore-bound.** The native listener encrypts pending
+    snippets with an Android Keystore AES-GCM key; 1.3.1 plaintext queues are
+    migrated and removed. If the Keystore key is lost, those pending snippets
+    cannot be recovered. They are review-only and never part of the ledger.
 22. **Capture availability varies by app.** Some apps use custom notification
     layouts, media styles or end-to-end content that the listener cannot parse.
 23. **No iOS build.** The repository is Android-only.
@@ -117,10 +117,10 @@
    Android clipboard. Other apps or system UI may read or display it. The app
    does not clear the clipboard automatically. A restore also reads plaintext
    JSON from the clipboard.
-4. **Encryption fallback.** If the Keystore is unavailable, data is stored as
-   app-private JSON, not encrypted. The UI discloses this, but the fallback is
-   weaker.
-5. **Plaintext capture queue.** See Section 1.3, item 21.
+4. **Encryption fails closed.** If the Keystore is unavailable, the app shows a
+   storage-unavailable screen and refuses to write. It does not fall back to
+   app-private plaintext JSON.
+5. **Keystore-bound capture queue.** See Section 1.3, item 21.
 6. **No root/tamper resistance.** A rooted device, compromised OS, debugger or
    malicious app with sufficient access can bypass the protections.
 7. **No certificate pinning or transport security.** There is no network
@@ -145,9 +145,9 @@ These cannot be solved by changing Dart code.
 | Operator/legal entity | Policies must identify who is responsible | Missing |
 | Qualified legal review | Privacy, terms, consent, liability and financial-disclaimer wording | Not done |
 | Target jurisdictions | Determine rights, retention, consumer and financial rules | Not selected |
-| Monitored support mailbox | Genuine route for bugs and complaints | Not configured |
-| Monitored privacy mailbox | Access/deletion/consent requests | Not configured |
-| Monitored security mailbox | Vulnerability disclosure | Not configured |
+| Monitored support mailbox | Genuine route for bugs and complaints | Config: `Ashwinkumar.cs27@gmail.com`; delivery test pending |
+| Monitored privacy mailbox | Access/deletion/consent requests | Uses the support inbox by default; delivery test pending |
+| Monitored security mailbox | Vulnerability disclosure | Uses the support inbox by default; delivery test pending |
 | Complaint-handling process | Intake, acknowledgement, triage, escalation, retention | Not defined |
 | Store data-safety declaration | Must match manifest and data flows | Not prepared |
 | Store account-deletion declaration | App has no accounts; local deletion must be explained | Not prepared |
@@ -227,7 +227,8 @@ keystore, a post-change device pass and store declarations.
 3. Should screenshot blocking remain on by default, and should the setting be
    disclosed in onboarding?
 4. Is the 30-second-to-30-minute PIN cooldown long enough for a 4-digit PIN?
-5. Is the plaintext native queue acceptable, or must it be eliminated?
+5. Is the Keystore-bound native queue acceptable, and what should happen if its
+   key is lost?
 6. Which jurisdiction's consumer and privacy rules govern the beta?
 7. Who is the operator, and who monitors each contact route?
 8. What evidence will be accepted as proof that the device matrix passed?

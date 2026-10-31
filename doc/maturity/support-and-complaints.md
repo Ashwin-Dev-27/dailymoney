@@ -9,25 +9,19 @@
 - **Last updated:** 30 October 2026
 - **App version described:** 1.3.1+8 (`com.dailymoney.app`)
 
-## 1. Current contact status: not configured
+## 1. Current contact status
 
-**No monitored support, privacy or security email is configured in this source
-tree or in the current beta build.**
+The default build publishes one support inbox:
 
-The app deliberately does not invent an address. When the configured values are
-empty:
+**Ashwinkumar.cs27@gmail.com**
 
-- the Support screen shows a warning banner: "Support contact not configured in
-  this build";
-- each contact row says "Not configured in this build";
-- the report builder still works and copies a report to the clipboard;
-- the screen tells the user to send the report through the channel that
-  provided the beta build;
-- no response-time target is promised.
+It is used for general support, privacy complaints and security reports unless a
+dedicated address is supplied at build time. The app does not promise a
+response-time target unless one is configured and displayed. Delivery should be
+tested before each public release.
 
-This is a **release blocker** for a public release. A public app must publish at
-least one genuine, monitored route for general support, privacy complaints and
-security reports, and must test that messages actually arrive.
+The report builder still copies a report to the clipboard. Users should not send
+one-time passwords, PINs, full account numbers or card numbers.
 
 ## 2. How the app reads the contact configuration
 
@@ -36,15 +30,15 @@ The contacts are build-time values in
 
 | Build key | Used for | Fallback |
 |---|---|---|
-| `DAILYMONEY_SUPPORT_EMAIL` | General support, bugs, incorrect calculations, accessibility | None. If empty, the general route is "not configured". |
+| `DAILYMONEY_SUPPORT_EMAIL` | General support, bugs, incorrect calculations, accessibility | Defaults to `Ashwinkumar.cs27@gmail.com`. |
 | `DAILYMONEY_PRIVACY_EMAIL` | Privacy complaints, access, retention, consent, deletion | Falls back to `DAILYMONEY_SUPPORT_EMAIL` if empty. |
 | `DAILYMONEY_SECURITY_EMAIL` | Suspected exposure, bypass or unsafe behaviour | Falls back to `DAILYMONEY_SUPPORT_EMAIL` if empty. |
 | `DAILYMONEY_SUPPORT_RESPONSE_TIME` | Optional published response target | If empty, the app says no response-time target is published. |
 
-`hasConfiguredSupportContact` is true only when
-`DAILYMONEY_SUPPORT_EMAIL` is non-empty. This keeps the top-level banner honest:
-a security-only or privacy-only address does not make general support
-"configured". The individual rows can still show their own configured address.
+`hasConfiguredSupportContact` is true when the general support address is
+non-empty. The default build satisfies it. A build that explicitly sets
+`DAILYMONEY_SUPPORT_EMAIL` to an empty value shows the warning again; this is
+intended for custom builds, not for public releases.
 
 ### Building with contacts
 

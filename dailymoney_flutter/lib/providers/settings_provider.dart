@@ -47,6 +47,31 @@ class SettingsProvider extends ChangeNotifier {
   ThemeMode themeMode = ThemeMode.system;
   bool seeded = false;
 
+  /// Budget values recorded per local month, keyed `yyyy-MM`.
+  ///
+  /// Reports for a past month must use the budget that applied then, not the
+  /// current setting. Values written before this map existed are seeded for the
+  /// current month when the app loads.
+  final Map<String, double> _budgetHistory = <String, double>{};
+
+  Map<String, double> get budgetHistory => Map.unmodifiable(_budgetHistory);
+
+  static final RegExp _monthKeyPattern = RegExp(r'^\d{4}-(0[1-9]|1[0-2])$');
+
+  static String monthKey(DateTime month) =>
+      '${month.year.toString().padLeft(4, '0')}-'
+      '${month.month.toString().padLeft(2, '0')}';
+
+  /// The budget recorded for [month], or the current budget when [month] is
+  /// the current month and no separate value has been recorded yet.
+  double? budgetForMonth(DateTime month) {
+    final key = monthKey(month);
+    final recorded = _budgetHistory[key];
+    if (recorded != null) return recorded;
+    if (key == monthKey(DateTime.now())) return monthlyBudget;
+    return null;
+  }
+
   /// Hides the app contents from screenshots and the Android recents preview.
   /// On by default because the app displays balances and transaction history.
   bool blockScreenshots = true;
@@ -138,6 +163,7 @@ class SettingsProvider extends ChangeNotifier {
     currencyCode = (s['currencyCode'] as String?) ?? currencyCode;
     userName = (s['userName'] as String?) ?? userName;
     monthlyBudget = ((s['monthlyBudget'] as num?) ?? monthlyBudget).toDouble();
+    _readBudgetHistory(s['budgetHistory']);
     seeded = (s['seeded'] as bool?) ?? seeded;
     welcomeSeen = (s['welcomeSeen'] as bool?) ?? seeded;
     splashIntroEnabled =
@@ -216,10 +242,32 @@ class SettingsProvider extends ChangeNotifier {
     }
   }
 
+  void _readBudgetHistory(Object? raw) {
+    _budgetHistory.clear();
+    if (raw is Map) {
+      for (final entry in raw.entries) {
+        final key = entry.key;
+        final value = entry.value;
+        if (key is String &&
+            _monthKeyPattern.hasMatch(key) &&
+            value is num &&
+            value.isFinite &&
+            value >= 0) {
+          _budgetHistory[key] = value.toDouble();
+        }
+      }
+    }
+    final current = monthKey(DateTime.now());
+    if (monthlyBudget > 0 && !_budgetHistory.containsKey(current)) {
+      _budgetHistory[current] = monthlyBudget;
+    }
+  }
+
   Future<void> _persist() => _storage.saveSettings({
         'currencyCode': currencyCode,
         'userName': userName,
         'monthlyBudget': monthlyBudget,
+        'budgetHistory': _budgetHistory,
         'themeMode': themeMode.name,
         'seeded': seeded,
         'blockScreenshots': blockScreenshots,
@@ -280,6 +328,7 @@ class SettingsProvider extends ChangeNotifier {
 
   Future<void> setMonthlyBudget(double value) async {
     monthlyBudget = value < 0 ? 0 : value;
+    _budgetHistory[monthKey(DateTime.now())] = monthlyBudget;
     notifyListeners();
     await _persist();
   }
@@ -424,6 +473,7 @@ class SettingsProvider extends ChangeNotifier {
     if (budget is num && budget.isFinite && budget >= 0) {
       monthlyBudget = budget.toDouble();
     }
+    _readBudgetHistory(s['budgetHistory']);
     final policy = s['allowancePolicy'];
     if (policy is String) {
       allowancePolicy = AllowancePolicy.values.firstWhere(
@@ -677,6 +727,7 @@ class SettingsProvider extends ChangeNotifier {
     currencyCode = 'USD';
     userName = '';
     monthlyBudget = 0;
+    _budgetHistory.clear();
     themeMode = ThemeMode.system;
     blockScreenshots = true;
     allowancePolicy = AllowancePolicy.carryForward;

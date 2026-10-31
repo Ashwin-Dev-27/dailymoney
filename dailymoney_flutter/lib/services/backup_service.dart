@@ -235,6 +235,7 @@ Future<BackupImportResult> restoreBackup({
     'currencyCode': settings.currencyCode,
     'userName': settings.userName,
     'monthlyBudget': settings.monthlyBudget,
+    'budgetHistory': settings.budgetHistory,
     'allowancePolicy': settings.allowancePolicy.name,
     'moneyProtection': settings.moneyProtection,
     'emergencyBuffer': settings.emergencyBuffer,

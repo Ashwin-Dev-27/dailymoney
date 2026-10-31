@@ -15,11 +15,12 @@
 
 ## 1. Who is responsible
 
-DailyMoney is an Android budgeting app. The repository does not currently
-identify a legal entity, registered address, data-protection officer or
-monitored privacy contact. **This section must be completed before a public
-release.** Until then, the app is a private-beta build and privacy questions can
-only be raised through the support route described in Section 12.
+DailyMoney is an Android budgeting app developed by AIX, an independent
+software studio founded by Ashwin Kumar (India). The repository does not
+currently identify a registered legal entity, registered address or
+data-protection officer. **Those details must be completed before a public
+release.** Privacy questions can be raised through the support route described
+in Section 13.
 
 ## 2. Scope and architecture
 
@@ -105,10 +106,11 @@ ignores DailyMoney itself, system applications, one-time passwords and login
 codes.
 
 The listener may store a short snippet in the app's private SharedPreferences
-queue in plaintext so the app can import it on the next open. The app then moves
-the snippet into encrypted storage and clears the queue. If you turn payment
-detection off before the next open, the queued snippet is discarded instead of
-being imported.
+queue, encrypted with an Android Keystore AES-GCM key, so the app can import it
+on the next open. The app then moves the snippet into encrypted storage and
+clears the queue. If you turn payment detection off before the next open, the
+queued snippet is discarded instead of being imported. A plaintext queue written
+by an older version is migrated and removed.
 
 Nothing is added to your ledger automatically. Every detection waits for your
 review. You can accept or ignore it, or clear the review list.
@@ -254,11 +256,10 @@ described in the app.
 ## 13. Contact
 
 Privacy questions and complaints can be started from **Settings > Help &
-legal > Support & complaints**. **This beta build does not publish a monitored
-support or privacy email.** The Support screen says so explicitly rather than
-inventing an address. A verified privacy contact must be configured with the
-`--dart-define` keys documented in
-[support-and-complaints.md](support-and-complaints.md) before public release.
+support > Support & complaints**. The default support inbox is
+**Ashwinkumar.cs27@gmail.com**; privacy reports can be sent there unless the app
+shows a dedicated privacy address. No response-time target is promised unless
+one is published on that screen.
 
 ## 14. Questions that require legal review
 
@@ -285,4 +286,4 @@ inventing an address. A verified privacy contact must be configured with the
 | In-app updated date | 29 October 2026 |
 | Review status | Not legally reviewed |
 | Operator details | Missing |
-| Monitored privacy contact | Missing |
+| Monitored privacy contact | `Ashwinkumar.cs27@gmail.com` (delivery test pending) |

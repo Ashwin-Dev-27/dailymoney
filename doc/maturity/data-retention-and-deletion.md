@@ -29,14 +29,14 @@ Permissions & data**.
 
 | Data | Storage | Protection | Retention |
 |---|---|---|---|
-| Transactions (title, amount, type, category, date, note, split share) | `dm.transactions.v1` | AES-256-GCM when the Keystore is available; otherwise app-private JSON | Until deleted individually, by a full wipe, or by uninstall |
+| Transactions (title, amount, type, category, date, note, split share) | `dm.transactions.v1` | AES-256-GCM, Keystore-backed | Until deleted individually, by a full wipe, or by uninstall |
 | Upcoming bills | `dm.upcoming.v1` | Same as above | Same as above |
 | Savings goals and contributions | `dm.goals.v1` | Same as above | Same as above |
 | Expected income | `dm.expected_income.v1` | Same as above | Same as above |
 | Shared expenses and repayments | `dm.shared_expenses.v1` | Same as above | Same as above |
-| Detected payments waiting for review | `dm.detections.v1` | AES-256-GCM when available | Until accepted, ignored, cleared, or wiped |
-| Native detection queue | `dm.capture.queue.v1` | **Plaintext** app-private SharedPreferences | Until the next app open, or wiped |
-| Preferences, onboarding, legal acceptance, consent state | `dm.settings.v1` | AES-256-GCM when available; otherwise app-private JSON | Until full wipe or uninstall |
+| Detected payments waiting for review | `dm.detections.v1` | AES-256-GCM, Keystore-backed | Until accepted, ignored, cleared, or wiped |
+| Native detection queue | Keystore-encrypted `dm_capture_secure` preferences | AES-256-GCM with an Android Keystore key | Until the next app open, or wiped |
+| Preferences, onboarding, legal acceptance, consent state | `dm.settings.v1` | AES-256-GCM, Keystore-backed | Until full wipe or uninstall |
 | App-lock PIN digest and lock flags | Keystore via `dm.pin.v1`; flags in `dm.security.v1` | Keystore-backed secure storage; PBKDF2 digest | Until PIN disabled, full wipe, or uninstall |
 | Random encryption key | Keystore as `dm.vault.key.v1` | Android Keystore | After **Delete all data** until uninstall or Android app-data clear (see Section 4) |
 | Optional JSON export | Android clipboard or wherever you paste/save it | Depends on destination | Outside the app's control |
@@ -47,8 +47,9 @@ separate crash or diagnostic store in this build.
 
 ### Detection queue retention
 
-The Android notification listener may write a short payment snippet to the
-plaintext native queue so the app can import it on the next open. The queue is
+The Android notification listener may write a short payment snippet to an
+AES-GCM queue protected by an Android Keystore key so the app can import it on
+the next open. Older plaintext queues are migrated and removed. The queue is
 always cleared when the app reads it. If payment detection is off at that
 moment, the snippet is discarded rather than imported. The retention window is
 therefore "until the next app open", subject to Android process behaviour.

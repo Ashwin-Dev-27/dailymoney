@@ -186,13 +186,21 @@ void main() {
     expect(other.decrypt(sealed), throwsA(anything));
   });
 
-  test('vault falls back to plain storage without a keystore', () async {
-    // Tests run without platform channels, so there is no durable key.
+  test('tests use a deterministic vault and never write plaintext', () async {
+    // Tests run without platform channels, so production key creation is not
+    // available and open() must not invent a key.
     expect(await DataVault.open(), isNull);
 
     final storage = StorageService();
     await storage.init();
-    expect(storage.encryptionEnabled, isFalse);
+    expect(storage.encryptionEnabled, isTrue);
+
+    await storage.saveSettings({'monthlyBudget': 500.0});
+    final prefs = await SharedPreferences.getInstance();
+    final raw = prefs.getString('dm.settings.v1');
+    expect(raw, startsWith('enc1:'));
+    expect(raw, isNot(contains('monthlyBudget')));
+    expect((await storage.loadSettings())['monthlyBudget'], 500.0);
   });
 
   test('upgrading encrypts existing plaintext payloads in place', () async {

@@ -9,9 +9,9 @@
 - **Last updated:** 31 October 2026
 - **Toolchain:** Flutter 3.47.8 stable, Dart 3.13.7
 - **Platform:** Android only
-- **Repository:** public at [Ashwin-Dev-27/dailymoney](https://github.com/Ashwin-Dev-27/dailymoney), branch `main`
+- **Repository:** public at [Ashwin-Dev-27/dailymoney](https://github.com/Ashwin-Dev-27/dailymoney), branch `release-blockers` (changes uncommitted)
 - **Installed APK:** 1.3.1+8, debug-signed, installed on the developer device on 30 October 2026
-- **Distributable APK:** 1.3.1+8, release-signed, built on 30 October 2026 and uploaded to Firebase App Distribution
+- **Distributable APK:** 1.3.1+8, release-signed, built 31 October 2026; `apksigner verify` passed (v2, RSA 4096, CN=Ashwin Kumar, OU=AIX, O=AIX, L=India, ST=India, C=IN)
 
 ## 1. Release blockers
 
@@ -19,11 +19,11 @@ These items **must** be resolved before a public release.
 
 | # | Blocker | Why it blocks | Owner / action |
 |---|---|---|---|
-| 1 | Support contact is not configured | The Support screen says "not configured"; users have no genuine route for bugs, privacy or security reports | Configure and monitor `DAILYMONEY_SUPPORT_EMAIL`, `DAILYMONEY_PRIVACY_EMAIL`, `DAILYMONEY_SECURITY_EMAIL`; verify delivery |
+| 1 | Support contact configured in source | Defaults to `Ashwinkumar.cs27@gmail.com` (privacy/security fall back to it); dedicated addresses and delivery test still pending | Verify inbox delivery and keep at least one monitored route |
 | 2 | Legal review is not complete | Privacy Policy, Terms, Disclaimer, consent wording and liability clauses are drafts | Qualified lawyer review for the target jurisdictions |
-| 3 | Operator identity and jurisdiction are missing | Policies cannot identify the data controller or governing law | Complete the operator/legal entity details |
+| 3 | Operator identity and jurisdiction are missing | Policies identify AIX / Ashwin Kumar but not a registered legal entity or governing law | Complete the operator/legal entity details |
 | 4 | Release keystore has only one local backup | The key exists and is backed up outside the repository, but the password has not been rotated and there is no second offline copy; losing the key means a new application id or uninstall/data loss for existing users | Store a second offline copy and rotate the password |
-| 5 | Release build is only partially device-verified | A release-signed 1.3.1+8 APK exists, but the installed developer build is debug-signed and the full beta test plan has not run | Complete the device matrix against the release-signed APK |
+| 5 | Release build is only partially device-verified | A release-signed 1.3.1+8 APK exists and is signed/verified, but the installed developer build is debug-signed and the full beta test plan has not run | Complete the device matrix against the release-signed APK |
 | 6 | Physical-device verification is incomplete | Automated tests cannot validate notifications, biometrics, capture, Keystore or TalkBack, and only one device has run the build | Run the beta test plan on the device matrix |
 | 7 | Store declarations are not prepared | Data safety, account deletion, content rating, privacy policy URL and support URL are required by the store | Complete the store listing and declarations |
 | 8 | Complaint-handling process is not defined | The beta has no intake, acknowledgement, escalation or retention process | Agree the process and staff the mailbox before release |
@@ -32,20 +32,21 @@ These items **must** be resolved before a public release.
 
 | Check | Status | Evidence |
 |---|---|---|
-| `dart format lib test` | ✅ Run | 111 files checked; 0 reformatted on the final pass |
-| `flutter analyze --no-fatal-infos` | ✅ Clean | `doc/maturity/analyze-output.txt` |
-| Full `flutter test` | ✅ Passing | `doc/maturity/test-output.txt` |
-| Test count | ✅ 174 tests across 22 files | Final compact run |
+| `dart format lib test` | ✅ Run | 113 files checked; 1 reformatted on the final pass (`storage_service.dart`) |
+| `flutter analyze` | ✅ Clean | No issues found |
+| Full `flutter test` | ✅ Passing | `build/test-full2.log` |
+| Test count | ✅ 179 tests across 23 files | Full compact run, exit 0 |
+| New budget-history tests | ✅ 5 tests | `test/budget_history_test.dart` |
 | New onboarding/legal tests | ✅ 8 tests | `test/onboarding_legal_test.dart` |
 | New backup/restore tests | ✅ 7 tests | `test/backup_restore_test.dart` |
 | New PIN cooldown tests | ✅ 3 tests | `test/security_test.dart` |
 | Capture consent edge-case test | ✅ Passes | `test/capture_test.dart` |
-| Release APK built after changes | ✅ Built | `build/app/outputs/flutter-apk/app-release.apk`, 57.8 MB, versionCode 8/versionName 1.3.1, signed with the local AIX release key |
+| Release APK built after changes | ✅ Built | `build/app/outputs/flutter-apk/app-release.apk`, 61.8 MB, versionCode 8/versionName 1.3.1, minSdk 24/targetSdk 36, no `INTERNET` |
+| Release signing verified | ✅ Verified | `apksigner verify --print-certs`: v2 scheme, RSA 4096, `CN=Ashwin Kumar, OU=AIX, O=AIX, L=India, ST=India, C=IN` |
 | Release signing code supports a private key | ✅ | `android/app/build.gradle.kts`, `android/key.properties.example` |
-| Release keystore created and used | ✅ Created locally | `android/dailymoney-release.jks` and `android/key.properties` exist on the build machine; both are gitignored and must be backed up securely |
-| App size / startup profile | ❌ Not measured | 57.8 MB universal APK; no startup baseline |
-| Crash-free smoke run | ✅ Passed on device | 1.3.1+8 installed over the existing build on the Redmi test device; app launches; existing data intact; Help Centre search/FAQ/chapter/tour replay and tour steps 1-10 passed; FLAG_SECURE still blocks screenshots |
-| Dependency audit | ❌ Not performed | `pubspec.lock` has newer versions available; no vulnerability scan recorded |
+| App size / startup profile | ❌ Not measured | 61.8 MB universal APK; no startup baseline |
+| Crash-free smoke run | ⚠️ Partial | Automated suite passes; no new physical-device smoke run for this change set |
+| Dependency audit | ✅ Performed | OSV API batch query: 112 packages, 0 vulnerabilities (31 Oct 2026) |
 
 ## 3. Product surface
 
@@ -101,7 +102,9 @@ No existing feature was removed, renamed or replaced in this pass.
 | Release manifest has no `INTERNET` | ✅ | `android/app/src/main/AndroidManifest.xml` |
 | Debug/profile builds document `INTERNET` | ✅ | Debug/profile manifests only |
 | Android backup and device transfer disabled | ✅ | `allowBackup="false"`, `data_extraction_rules.xml` |
-| Payloads encrypted at rest | ✅ | AES-256-GCM via `DataVault` |
+| Payloads encrypted at rest | ✅ | AES-256-GCM via `DataVault`; production fails closed when the Keystore is unavailable |
+| Native detection queue encrypted | ✅ | Android Keystore AES-GCM queue; 1.3.1 plaintext queues migrated and removed |
+| No plaintext storage fallback | ✅ | `StorageService` refuses writes without a vault; startup shows `StorageUnavailableScreen` |
 | PIN uses PBKDF2 + legacy migration | ✅ | `SecurityProvider`, `security_test.dart` |
 | Full data wipe exists without an account | ✅ | `DataControlsScreen`, `wipeAllData` |
 | Detection queue discarded after opt-out | ✅ | `CaptureProvider.load(acceptNative: false)` |
@@ -134,16 +137,17 @@ No existing feature was removed, renamed or replaced in this pass.
 - [ ] Store privacy policy and support URLs published
 - [ ] Data safety / account deletion declarations completed
 - [ ] Legal review sign-off recorded
+- [x] Support contact configured by default (privacy/security fall back to the same inbox)
 - [ ] Support and privacy contacts monitored and tested
 
 ## 6. Store and distribution
 
 - [ ] Play Console (or other store) account ready
-- [ ] Release keystore created and backed up
-- [ ] Release build signed with the release key
+- [x] Release keystore created and backed up
+- [x] Release build signed with the release key
 - [x] Version code incremented for the new build (`1.3.1+8`)
 - [x] Release-signing configuration path documented and implemented
-- [ ] Target SDK meets the store's current requirement
+- [x] Target SDK meets the store's current requirement (targetSdk 36, minSdk 24)
 - [ ] App icon, feature graphic and screenshots prepared
 - [ ] Store title, short description and full description prepared
 - [ ] Content rating questionnaire completed
@@ -199,12 +203,11 @@ The private beta can be considered ready to expand only when:
 **Current status: NO-GO for public release.**
 
 The product and documentation work is substantially complete, and the automated
-checks pass. Public release is blocked by the absent release keystore, the lack
-of an installed and device-verified post-change build, the missing support
-contact, and the missing legal/operator/store work. Private beta distribution to
-known testers can proceed only with an explicit warning that the build is a
-beta, that support may be unavailable, and that testers should use non-critical
-data and export before wiping.
+checks pass. Public release is blocked by the incomplete legal/operator/store
+work, the single keystore backup, and the lack of a device-verified post-change
+build. Private beta distribution to known testers can proceed only with an
+explicit warning that the build is a beta, that support may be unavailable, and
+that testers should use non-critical data and export before wiping.
 
 ## Document control
 
@@ -212,8 +215,8 @@ data and export before wiping.
 |---|---|
 | Public? | Yes - published in this repository |
 | Status | Not release-ready |
-| Blockers | 8 |
-| Automated suite | Passing (174 tests, 22 files) |
-| Device pass | Partial: Help Centre and tour passed on 1.3.1+8; remaining cases pending |
-| Built APK | 1.3.1+8, release-signed with the local AIX key; not installed (would replace the debug-signed build) |
-| Signed with release key | Produced - `CN=Ashwin Kumar, OU=AIX, O=AIX, L=India, ST=India, C=IN` |
+| Blockers | 7 |
+| Automated suite | Passing (179 tests, 23 files) |
+| Device pass | Partial: automated suite passes; physical-device smoke not run for this change set |
+| Built APK | 1.3.1+8, release-signed, 61.8 MB; not installed (would replace the debug-signed build) |
+| Signed with release key | Verified - `CN=Ashwin Kumar, OU=AIX, O=AIX, L=India, ST=India, C=IN` (RSA 4096, v2) |
