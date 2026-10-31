@@ -130,8 +130,8 @@ implementation, and verification with captured proof.
 
 - **Play Store release:** a local release keystore now exists and release builds are
   signed with it; Play Console registration and the store listing are still pending.
-- A local Git repository has been initialized for the GitHub upload; no remote has been
-  configured yet.
+- The source is published in the public GitHub repository
+  [Ashwin-Dev-27/dailymoney](https://github.com/Ashwin-Dev-27/dailymoney) on `main`.
 
 ## Decisions made (no approval needed, reversible)
 

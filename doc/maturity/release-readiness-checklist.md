@@ -6,10 +6,10 @@
 > store has approved the app or that a lawyer has reviewed it.
 
 - **Version under review:** 1.3.1+8 (`com.dailymoney.app`)
-- **Last updated:** 30 October 2026
+- **Last updated:** 31 October 2026
 - **Toolchain:** Flutter 3.47.8 stable, Dart 3.13.7
 - **Platform:** Android only
-- **Repository:** local Git repository initialized on `main`; no remote configured yet
+- **Repository:** public at [Ashwin-Dev-27/dailymoney](https://github.com/Ashwin-Dev-27/dailymoney), branch `main`
 - **Installed APK:** 1.3.1+8, debug-signed, installed on the developer device on 30 October 2026
 - **Distributable APK:** 1.3.1+8, release-signed, built on 30 October 2026 and uploaded to Firebase App Distribution
 
