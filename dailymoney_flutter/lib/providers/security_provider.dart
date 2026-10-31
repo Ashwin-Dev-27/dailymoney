@@ -110,10 +110,13 @@ class SecurityProvider extends ChangeNotifier {
   Future<void> setPin(String pin) async {
     final salt = _randomBytes(16);
     final hash = await _derivePin(pin, salt, _pinIterations);
-    await SecureStore.write(
+    final saved = await SecureStore.write(
       _pinKey,
       '$_pinVersion:$_pinIterations:${base64Encode(salt)}:$hash',
     );
+    if (!saved) {
+      throw StateError('Secure storage is unavailable');
+    }
     pinEnabled = true;
     locked = false;
     _clearLockoutState();

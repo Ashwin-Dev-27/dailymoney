@@ -11,6 +11,7 @@ import 'providers/settings_provider.dart';
 import 'providers/transactions_provider.dart';
 import 'providers/upcoming_provider.dart';
 import 'screens/data_recovery_screen.dart';
+import 'screens/storage_unavailable_screen.dart';
 import 'services/notification_service.dart';
 import 'services/screen_security.dart';
 import 'services/storage_service.dart';
@@ -20,6 +21,13 @@ Future<void> main() async {
 
   final storage = StorageService();
   await storage.init();
+
+  // Writes fail closed without a device-bound key. Stop before any provider
+  // can change data and explain how to retry.
+  if (!storage.encryptionEnabled) {
+    runApp(StorageUnavailableApp(storage: storage));
+    return;
+  }
 
   final settings = SettingsProvider(storage);
   await settings.load();

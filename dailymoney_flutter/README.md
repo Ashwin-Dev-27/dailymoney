@@ -124,9 +124,10 @@ flutter build apk --release      # builds app-release.apk (v1.3.1+8)
 
 ### Support contact configuration
 
-The app contains no support address by default. To build with a real contact
-route, pass these build-time values (all optional; the support email is the one
-that enables the contact route):
+The app defaults to the published support inbox
+(`Ashwinkumar.cs27@gmail.com`). Privacy and security reports use the same inbox
+unless a dedicated address is supplied. No response-time target is published by
+default. Override any value at build time:
 
 ```bash
 flutter build apk --release \
@@ -136,9 +137,9 @@ flutter build apk --release \
   --dart-define=DAILYMONEY_SUPPORT_RESPONSE_TIME="within 5 working days"
 ```
 
-If `DAILYMONEY_SUPPORT_EMAIL` is empty, the Support screen shows a warning
-that no verified contact is configured and still lets the user copy a report.
-A genuine monitored address and qualified legal review remain release blockers.
+If `DAILYMONEY_SUPPORT_EMAIL` is explicitly set to empty, the Support screen
+shows a warning that no contact is configured and still lets the user copy a
+report. Only publish a response time after it has been agreed and tested.
 
 ### Security notes
 
@@ -155,10 +156,11 @@ A genuine monitored address and qualified legal review remain release blockers.
 - If a stored payload exists but cannot be decrypted or parsed, the app shows a recovery
   screen instead of an empty ledger. Erasing is a separate, explicit choice; an export
   is refused while unreadable data is present so it cannot look like a valid empty backup.
-- If the keystore is unavailable (for example in widget tests) new writes fall back to
-  plain JSON and the PIN screen stays off; this is deliberate so the app never becomes
-  unopenable on a device without keystore support. Existing encrypted payloads without
-  their key are reported through the recovery screen, not silently discarded.
+- If the Keystore is unavailable, the app **fails closed**: it shows a storage
+  unavailable screen and refuses to write new payloads. It never falls back to
+  plain JSON in production. Existing encrypted payloads are reported through the
+  recovery screen, not silently discarded. Tests use a deterministic in-memory
+  vault and also never write plaintext.
 - Settings → Help & support → Legal & privacy → Data controls exports a JSON backup
   (ledger, bills, goals, expected income, shared records and selected preferences; no
   PIN) and restores one from the clipboard. Restore replaces financial records only;
@@ -174,8 +176,8 @@ A genuine monitored address and qualified legal review remain release blockers.
 - Reports uses a simple budget split for its daily allowance and does not replay the
   money-protection or recovery caps shown on Home. Home remains the live "what can I
   spend today" answer; Reports is a spending record.
-- Earlier budget values are not stored, so a past month's report uses the current
-  monthly budget rather than the budget that was set at the time.
+- Budget changes are recorded per month. A past month with no recorded value shows the
+  current budget with a clear fallback label, rather than presenting it as historical.
 
 ### Automatic tracking notes
 
@@ -184,9 +186,11 @@ A genuine monitored address and qualified legal review remain release blockers.
 - The listener ignores DailyMoney itself and system apps, skips OTP/login messages, and
   keeps a notification only when it contains payment wording plus a detectable amount.
   Detections are deduplicated for 10 minutes and capped at 20 in the native queue.
-- A short snippet (title + amount + app label) is queued in plaintext preferences for the
-  next app open; the Dart side merges it into encrypted storage and clears the queue. If
-  payment-detection consent is off, the queue is cleared without importing.
+- A short snippet (title + amount + app label) is queued in SharedPreferences encrypted
+  with an Android Keystore AES-GCM key; the Dart side merges it into the encrypted
+  ledger store and clears the queue. Queues written by 1.3.1 are migrated and the
+  plaintext copy is removed. Dedupe signatures are hashed. If payment-detection consent
+  is off, the queue is cleared without importing.
 - Detected-payment review-prompt notifications respect the separate notification
   consent; with notifications off, detections still queue for in-app review silently.
 - Nothing enters the ledger automatically: accept or ignore each item on the review

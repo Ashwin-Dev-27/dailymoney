@@ -10,6 +10,10 @@ import 'secure_store.dart';
 /// A random 256-bit key is generated on first run and kept in the Android
 /// Keystore via [SecureStore]. Values are AES-GCM encrypted, so a copied
 /// preferences file cannot be read without that key.
+///
+/// Storage fails closed: when no durable key is available [open] returns null
+/// and [StorageService] refuses to write rather than silently storing plain
+/// JSON.
 class DataVault {
   DataVault._(this._key);
 
@@ -28,23 +32,31 @@ class DataVault {
   factory DataVault.fromKeyBytes(List<int> bytes) =>
       DataVault._(SecretKey(bytes));
 
-  /// Opens (or creates) the vault. Returns null when no key material is
-  /// available, in which case storage falls back to readable JSON.
+  /// Deterministic in-memory vault for widget and unit tests.
+  static DataVault testVault() => DataVault._(
+        SecretKey(List<int>.generate(32, (i) => (i * 17 + 29) & 0xff)),
+      );
+
+  /// Opens (or creates) the vault.
+  ///
+  /// Returns null when no durable key material is available. Callers must then
+  /// block writes instead of falling back to plain JSON.
   static Future<DataVault?> open() async {
-    // Without a persistent keystore a fresh key each launch would make the
-    // existing encrypted payloads unreadable, so fall back to plain JSON.
     if (!SecureStore.isAvailable) return null;
     try {
-      final stored = await SecureStore.read(_keyName);
-      final storedBytes = stored == null ? null : base64Decode(stored);
-      List<int> bytes;
-      if (storedBytes == null || storedBytes.length != 32) {
-        final key = await _algorithm.newSecretKey();
-        bytes = await key.extractBytes();
-        await SecureStore.write(_keyName, base64Encode(bytes));
-      } else {
-        bytes = storedBytes;
+      final stored = await SecureStore.readStrict(_keyName);
+      if (stored != null) {
+        final bytes = base64Decode(stored);
+        // A malformed key must not be replaced: doing so would make every
+        // existing encrypted payload unreadable.
+        if (bytes.length != 32) return null;
+        return DataVault._(SecretKey(bytes));
       }
+
+      final key = await _algorithm.newSecretKey();
+      final bytes = await key.extractBytes();
+      final persisted = await SecureStore.write(_keyName, base64Encode(bytes));
+      if (!persisted) return null;
       return DataVault._(SecretKey(bytes));
     } catch (_) {
       return null;

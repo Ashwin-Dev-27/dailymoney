@@ -11,14 +11,20 @@ const String kLegalVersion = '1.1';
 const String kLegalUpdatedOn = '30 October 2026';
 const String kConsentVersion = '1.1';
 
-/// Optional build-time contact configuration.
+/// Build-time contact configuration.
 ///
-/// Supply with:
+/// The default is the published support inbox. Override it for another build
+/// with:
 ///   flutter build apk --dart-define=DAILYMONEY_SUPPORT_EMAIL=you@example.com
 ///
-/// The app deliberately refuses to invent an address. When these values are
-/// empty the Support screen says so and still lets the user copy a report.
-const String kSupportEmail = String.fromEnvironment('DAILYMONEY_SUPPORT_EMAIL');
+/// Privacy and security reports use the same inbox unless a dedicated address
+/// is supplied. No response-time target is published by default.
+const String _defaultSupportEmail = 'Ashwinkumar.cs27@gmail.com';
+
+const String kSupportEmail = String.fromEnvironment(
+  'DAILYMONEY_SUPPORT_EMAIL',
+  defaultValue: _defaultSupportEmail,
+);
 const String kSecurityEmail =
     String.fromEnvironment('DAILYMONEY_SECURITY_EMAIL');
 const String kPrivacyEmail = String.fromEnvironment('DAILYMONEY_PRIVACY_EMAIL');
@@ -268,10 +274,9 @@ const LegalDocument privacyPolicy = LegalDocument(
       title: '10. Contact',
       paragraphs: [
         'Privacy questions and complaints can be started from Support & '
-            'complaints in the app. This beta build does not yet publish a '
-            'monitored support email. A verified privacy contact must be '
-            'configured before public release; the Support screen shows the '
-            'configured route when one is available.',
+            'complaints in the app. The support inbox is listed there, and '
+            'privacy reports can be sent to it. No separate privacy address is '
+            'published unless the app shows one.',
       ],
     ),
   ],
@@ -394,10 +399,10 @@ const LegalDocument termsOfService = LegalDocument(
             'what you expected, what happened, and whether the issue concerns a '
             'calculation, privacy, security or accessibility. Do not send '
             'one-time passwords, full bank account numbers or card numbers.',
-        'A monitored contact and response target must be configured before '
-            'public release. This beta build does not promise a response time '
-            'where no such target is published. Nothing in this section limits '
-            'rights you have under mandatory consumer law.',
+        'Support and privacy contact routes are listed on the Support & '
+            'complaints screen. No response-time target is promised unless it '
+            'is published there. Nothing in this section limits rights you '
+            'have under mandatory consumer law.',
       ],
     ),
     LegalSection(
@@ -430,9 +435,9 @@ const LegalDocument termsOfService = LegalDocument(
             'block access to your existing records while a new version is '
             'pending. If you do not agree to a change, stop using the app and '
             'delete your data.',
-        'Contact routes are listed on the Support & complaints screen. A '
-            'verified support and legal contact must be configured before '
-            'public release.',
+        'Contact routes are listed on the Support & complaints screen. '
+            'Privacy and security reports use the same inbox as general '
+            'support unless the app shows a dedicated address.',
       ],
     ),
   ],

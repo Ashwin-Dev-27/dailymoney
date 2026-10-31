@@ -157,8 +157,7 @@ class _SupportScreenState extends State<SupportScreen> {
                         Text(
                           'The app will not invent an address. You can still '
                           'copy a report and send it through the channel that '
-                          'provided this beta build. A monitored support '
-                          'address is required before public release.',
+                          'provided this build.',
                           style: TextStyle(
                             fontSize: 11.5,
                             height: 1.45,
@@ -190,10 +189,10 @@ class _SupportScreenState extends State<SupportScreen> {
                   Expanded(
                     child: Text(
                       kSupportResponseTime.isEmpty
-                          ? 'A support contact is configured. No response-time '
-                              'target is published for this beta build.'
-                          : 'A support contact is configured. Target response: '
-                              '$kSupportResponseTime.',
+                          ? 'Support is available at the address below. No '
+                              'response-time target is published.'
+                          : 'Support is available at the address below. Target '
+                              'response: $kSupportResponseTime.',
                       style: TextStyle(
                         fontSize: 12,
                         height: 1.5,
@@ -240,6 +239,18 @@ class _SupportScreenState extends State<SupportScreen> {
               ],
             ),
           ),
+          if (privacy == general && security == general) ...[
+            const SizedBox(height: 8),
+            Text(
+              'Privacy and security reports currently reach the same inbox as '
+              'general support.',
+              style: TextStyle(
+                fontSize: 11,
+                height: 1.45,
+                color: scheme.outline,
+              ),
+            ),
+          ],
           const SizedBox(height: 16),
           _label(context, 'Build a report'),
           Card(
@@ -335,7 +346,7 @@ class _SupportScreenState extends State<SupportScreen> {
                     general.isNotEmpty
                         ? 'Send the copied text to $general.'
                         : 'Send the copied text through the channel that '
-                            'provided this beta build.',
+                            'provided this build.',
                     style: TextStyle(
                       fontSize: 11.5,
                       height: 1.45,

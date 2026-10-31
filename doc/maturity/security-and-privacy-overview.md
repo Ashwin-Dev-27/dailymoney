@@ -52,19 +52,20 @@ Data controls ──► JSON export ──► Android clipboard ──► user's
 - Key: 32 random bytes generated on first run, stored in the Android Keystore
   through `flutter_secure_storage` (`AndroidOptions(encryptedSharedPreferences:
   true)`).
-- If no persistent Keystore is available, `DataVault.open()` returns null and
-  storage falls back to plain JSON in app-private storage. The **Permissions &
-  data** screen shows "Encryption unavailable" in that state.
+- If no persistent Keystore is available, `DataVault.open()` returns null. The
+  app then shows a storage-unavailable screen and refuses to write; it does not
+  fall back to plain JSON. Existing encrypted payloads are left untouched so a
+  transient Keystore failure can be retried.
 - The key is never exported and is not part of the JSON backup.
 
 ### 2.2 What is encrypted
 
 Encrypted: transactions, bills, goals, expected income, shared expenses,
-detections, settings and security flags.
+detections, settings, security flags, the native detection queue and its dedupe
+signatures.
 
-Not encrypted: the native detection queue (`dm.capture.queue.v1`) and the
-capture-enabled / notification-prompt flags. These are plaintext booleans and
-short snippets in app-private SharedPreferences.
+Still plaintext: only the capture-enabled and notification-prompt booleans needed
+by the Android listener while the app is closed. They contain no payment data.
 
 The PIN digest is stored through `SecureStore`, not in the encrypted settings
 payload.
@@ -118,15 +119,15 @@ declared.
    - messages with OTP/login hints;
    - messages without a detectable amount.
 4. It deduplicates identical package/amount/title combinations for 10 minutes.
-5. It stores at most 20 snippets in the plaintext native queue. A snippet
+5. It stores at most 20 snippets in a Keystore AES-GCM encrypted queue. A snippet
    contains package name, app label, title, up to 300 characters of text, amount,
-   type guess, timestamp and a random ID.
+   type guess, timestamp and a random ID. Dedupe signatures are SHA-256 hashes.
 6. It posts a review prompt only if the mirrored notification-consent flag is
    true. Detection still queues without a prompt.
-7. On the next app open, the Dart side always clears the native queue. It
-   imports the snippets only when `acceptNative` is true, which is tied to the
-   current payment-detection setting. Snippets captured before opt-out are
-   discarded.
+7. On the next app open, the Dart side reads and clears the encrypted queue over
+   a MethodChannel. It imports the snippets only when `acceptNative` is true,
+   which is tied to the current payment-detection setting. Snippets captured
+   before opt-out are discarded.
 8. Imported detections are stored encrypted and capped at 40. They never enter
    the ledger until the user accepts them.
 
@@ -152,12 +153,12 @@ off by default, filtered, locally stored and review-only.
 
 | Threat | Mitigation | Residual risk |
 |---|---|---|
-| Another app reads app-private storage | Android sandbox + AES-GCM | Rooted device, compromised OS or a backup bypass could read files; without the Keystore key the ciphertext is unreadable, but plaintext flags/queue are exposed |
+| Another app reads app-private storage | Android sandbox + AES-GCM | Rooted device, compromised OS or a backup bypass could read files; without the Keystore key the ciphertext is unreadable. Only the capture on/off booleans remain plaintext |
 | Lost or stolen unlocked device | Optional PIN + biometrics, auto-lock, screenshot blocking | A weak 4-digit PIN can be guessed if the digest is extracted; the cooldown is app-level |
 | Shoulder surfing / screenshots | `FLAG_SECURE` by default | A user can turn blocking off, and a camera can still photograph the screen |
 | Clipboard exposure | Export and restore only on tap | Other apps or system UI may read/display clipboard contents; the app does not clear it |
 | Malicious notification-access app | Android controls the grant; app filters | Notification access is broad; a user may grant it to a malicious app outside DailyMoney |
-| Notification snippet interception | App-private storage, short retention | The native queue is plaintext until the next app open |
+| Notification snippet interception | App-private storage, short retention, Keystore AES-GCM queue | A compromised OS with the unlocked Keystore could still read the queue |
 | Keystore unavailable | Fallback keeps app usable; encrypted payloads without a key show recovery | Data is then app-private JSON, not encrypted; the UI discloses this |
 | Corrupt/undecryptable payload | Recovery screen; export refused; erase is explicit | The unreadable records cannot be repaired; restarting or erasing are the only in-app choices |
 | Forgot PIN | Full wipe only | No recovery code; data loss is expected and disclosed |

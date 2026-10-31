@@ -5,11 +5,9 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
-import android.content.SharedPreferences
 import android.os.Build
 import android.service.notification.NotificationListenerService
 import android.service.notification.StatusBarNotification
-import org.json.JSONArray
 import org.json.JSONObject
 import java.time.Instant
 import java.util.UUID
@@ -17,9 +15,9 @@ import java.util.UUID
 /**
  * Reads payment-style notifications and queues them for review inside the app.
  *
- * Nothing is written to the ledger here. Each detection is stored as plain
- * JSON in the shared-preferences file that Flutter can read, and the Dart side
- * moves it into encrypted storage the next time the app is opened.
+ * Nothing is written to the ledger here. Each detection is encrypted with an
+ * Android Keystore key by [SecureCaptureQueue], and the Dart side moves it into
+ * the encrypted ledger store the next time the app is opened.
  *
  * The listener only runs when the user has granted notification access and
  * enabled automatic tracking in Settings.
@@ -30,10 +28,6 @@ class MoneyNotificationListener : NotificationListenerService() {
         private const val PREFS = "FlutterSharedPreferences"
         private const val KEY_ENABLED = "flutter.dm.capture.enabled"
         private const val KEY_PROMPT = "flutter.dm.notify.prompt.v1"
-        private const val KEY_QUEUE = "flutter.dm.capture.queue.v1"
-        private const val KEY_RECENT = "flutter.dm.capture.recent.v1"
-        private const val MAX_QUEUE = 20
-        private const val DEDUPE_WINDOW_MS = 10 * 60 * 1000L
         private const val CHANNEL_ID = "dm_capture"
 
         private val AMOUNT_WITH_SYMBOL = Regex(
@@ -101,7 +95,7 @@ class MoneyNotificationListener : NotificationListenerService() {
 
         val now = System.currentTimeMillis()
         val signature = "$pkg|$amount|${title.take(40)}"
-        if (isDuplicate(prefs, signature, now)) return
+        if (SecureCaptureQueue.isDuplicate(this, signature, now)) return
 
         val label = appLabel(pkg)
         val type = if (INCOME_HINTS.any { lower.contains(it) }) "income" else "expense"
@@ -115,7 +109,7 @@ class MoneyNotificationListener : NotificationListenerService() {
             put("type", type)
             put("capturedAt", Instant.ofEpochMilli(now).toString())
         }
-        enqueue(prefs, detection)
+        enqueue(detection)
         // The review prompt is a notification. Respect the separate
         // notification choice even while payment detection stays enabled.
         if (prefs.getBoolean(KEY_PROMPT, false)) {
@@ -131,41 +125,8 @@ class MoneyNotificationListener : NotificationListenerService() {
         return raw.toDoubleOrNull()
     }
 
-    private fun isDuplicate(
-        prefs: SharedPreferences,
-        signature: String,
-        now: Long,
-    ): Boolean {
-        val recent = try {
-            JSONObject(prefs.getString(KEY_RECENT, "{}") ?: "{}")
-        } catch (_: Exception) {
-            JSONObject()
-        }
-        val last = recent.optLong(signature, 0)
-        val duplicate = last > 0 && now - last < DEDUPE_WINDOW_MS
-
-        recent.put(signature, now)
-        if (recent.length() > 40) {
-            val oldest = recent.keys().asSequence().toList()
-                .sortedBy { recent.optLong(it, 0) }
-            for (key in oldest.take(recent.length() - 40)) recent.remove(key)
-        }
-        prefs.edit().putString(KEY_RECENT, recent.toString()).apply()
-        return duplicate
-    }
-
-    private fun enqueue(prefs: SharedPreferences, detection: JSONObject) {
-        val existing = try {
-            JSONArray(prefs.getString(KEY_QUEUE, "[]") ?: "[]")
-        } catch (_: Exception) {
-            JSONArray()
-        }
-        val next = JSONArray()
-        next.put(detection)
-        for (i in 0 until minOf(existing.length(), MAX_QUEUE - 1)) {
-            next.put(existing.opt(i))
-        }
-        prefs.edit().putString(KEY_QUEUE, next.toString()).apply()
+    private fun enqueue(detection: JSONObject) {
+        SecureCaptureQueue.append(this, detection.toString())
     }
 
     private fun appLabel(pkg: String): String = try {

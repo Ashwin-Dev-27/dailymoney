@@ -133,7 +133,17 @@ class _PinSetupScreenState extends State<PinSetupScreen> {
           });
           return;
         }
-        await security.setPin(entered);
+        try {
+          await security.setPin(entered);
+        } catch (_) {
+          if (!mounted) return;
+          setState(() {
+            _busy = false;
+            _pin = '';
+            _error = 'Secure storage is unavailable. The PIN was not saved.';
+          });
+          return;
+        }
         if (!mounted) return;
         Navigator.pop(context, true);
     }

@@ -30,6 +30,13 @@ class MainActivity : FlutterFragmentActivity() {
                         openNotificationAccessSettings()
                         result.success(null)
                     }
+                    "readNativeDetections" -> {
+                        result.success(SecureCaptureQueue.readAndClear(this).json)
+                    }
+                    "clearNativeDetections" -> {
+                        SecureCaptureQueue.clear(this)
+                        result.success(null)
+                    }
                     else -> result.notImplemented()
                 }
             }
