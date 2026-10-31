@@ -1,0 +1,12 @@
+# Copy this file to android/key.properties, then create the keystore with
+#   keytool -genkeypair -v -keystore dailymoney-release.jks \
+#     -keyalg RSA -keysize 4096 -validity 10000 -alias dailymoney-release
+#
+# key.properties and *.jks are ignored by git. Never upload or email them.
+# The same key must be used for every update of an installed release; losing it
+# means a new application id or an uninstall (and data loss) for existing users.
+
+storePassword=replace-with-keystore-password
+keyPassword=replace-with-key-password
+keyAlias=dailymoney-release
+storeFile=../dailymoney-release.jks

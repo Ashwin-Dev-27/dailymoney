@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The notification icon is referenced by name at runtime, so the resource
+  shrinker cannot see the reference and would otherwise remove it. Without
+  this the notification plugin fails to initialise in release builds.
+-->
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:keep="@drawable/ic_stat_wallet" />

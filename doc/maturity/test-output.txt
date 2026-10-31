@@ -1,0 +1,176 @@
+00:00 +0: loading D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart
+00:00 +0: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:00 +1: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:00 +2: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:00 +3: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:00 +4: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:00 +5: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:00 +6: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:00 +7: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:00 +8: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:00 +9: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:00 +10: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:00 +11: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:00 +12: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:00 +13: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:00 +14: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:00 +15: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:00 +16: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:00 +17: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:00 +18: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:00 +19: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:00 +20: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:00 +21: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:00 +22: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:00 +23: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:00 +24: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:00 +25: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:00 +26: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:00 +27: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:00 +28: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:00 +29: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:00 +30: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:00 +31: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:00 +32: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:00 +33: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:00 +34: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:00 +35: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:01 +36: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:01 +37: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:01 +38: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:01 +39: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:01 +40: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:01 +41: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:01 +42: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:01 +43: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:01 +44: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:01 +45: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:01 +46: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:01 +47: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:01 +48: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:01 +49: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:01 +50: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:01 +51: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:01 +52: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:01 +53: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:01 +54: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:01 +55: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:01 +56: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:01 +57: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:01 +58: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:01 +59: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:01 +60: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:01 +61: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:02 +62: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:02 +63: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:02 +64: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:02 +65: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:02 +66: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:02 +67: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:02 +68: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:02 +69: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:02 +70: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:02 +71: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:02 +72: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:02 +73: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:02 +74: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:02 +75: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:02 +76: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:02 +77: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:02 +78: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:02 +79: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:02 +80: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:02 +81: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:02 +82: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:02 +83: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:02 +84: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:02 +85: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:02 +86: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:02 +87: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:02 +88: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:02 +89: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:02 +90: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:02 +91: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:02 +92: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:02 +93: D:/tracking/dailymoney_flutter/test/add_edit_sheet_test.dart: changing a settlement to an expense clears settlement state
+00:02 +94: D:/tracking/dailymoney_flutter/test/help_centre_test.dart: Help centre lists all chapters and expands an answer
+00:03 +95: D:/tracking/dailymoney_flutter/test/narrow_layout_test.dart: all tabs fit a narrow phone without overflow
+00:03 +96: D:/tracking/dailymoney_flutter/test/narrow_layout_test.dart: all tabs fit a narrow phone without overflow
+00:04 +97: D:/tracking/dailymoney_flutter/test/narrow_layout_test.dart: all tabs fit a narrow phone without overflow
+00:04 +98: D:/tracking/dailymoney_flutter/test/narrow_layout_test.dart: all tabs fit a narrow phone without overflow
+00:05 +99: D:/tracking/dailymoney_flutter/test/narrow_layout_test.dart: all tabs fit a narrow phone without overflow
+00:05 +100: D:/tracking/dailymoney_flutter/test/narrow_layout_test.dart: all tabs fit a narrow phone without overflow
+00:05 +101: D:/tracking/dailymoney_flutter/test/narrow_layout_test.dart: all tabs fit a narrow phone without overflow
+00:05 +102: D:/tracking/dailymoney_flutter/test/narrow_layout_test.dart: all tabs fit a narrow phone without overflow
+00:06 +103: D:/tracking/dailymoney_flutter/test/narrow_layout_test.dart: all tabs fit a narrow phone without overflow
+00:06 +104: D:/tracking/dailymoney_flutter/test/narrow_layout_test.dart: all tabs fit a narrow phone without overflow
+00:06 +105: D:/tracking/dailymoney_flutter/test/narrow_layout_test.dart: all tabs fit a narrow phone without overflow
+00:06 +106: D:/tracking/dailymoney_flutter/test/narrow_layout_test.dart: all tabs fit a narrow phone without overflow
+00:06 +107: D:/tracking/dailymoney_flutter/test/narrow_layout_test.dart: all tabs fit a narrow phone without overflow
+00:06 +108: D:/tracking/dailymoney_flutter/test/narrow_layout_test.dart: all tabs fit a narrow phone without overflow
+00:06 +109: D:/tracking/dailymoney_flutter/test/narrow_layout_test.dart: all tabs fit a narrow phone without overflow
+00:06 +110: D:/tracking/dailymoney_flutter/test/narrow_layout_test.dart: all tabs fit a narrow phone without overflow
+00:06 +111: D:/tracking/dailymoney_flutter/test/narrow_layout_test.dart: all tabs fit a narrow phone without overflow
+00:06 +112: D:/tracking/dailymoney_flutter/test/narrow_layout_test.dart: all tabs fit a narrow phone without overflow
+00:06 +113: D:/tracking/dailymoney_flutter/test/narrow_layout_test.dart: all tabs fit a narrow phone without overflow
+00:07 +114: D:/tracking/dailymoney_flutter/test/narrow_layout_test.dart: all tabs fit a narrow phone without overflow
+00:07 +115: D:/tracking/dailymoney_flutter/test/narrow_layout_test.dart: all tabs fit a narrow phone without overflow
+00:07 +116: D:/tracking/dailymoney_flutter/test/narrow_layout_test.dart: all tabs fit a narrow phone without overflow
+00:07 +117: D:/tracking/dailymoney_flutter/test/narrow_layout_test.dart: all tabs fit a narrow phone without overflow
+00:07 +118: D:/tracking/dailymoney_flutter/test/narrow_layout_test.dart: all tabs fit a narrow phone without overflow
+00:07 +119: D:/tracking/dailymoney_flutter/test/narrow_layout_test.dart: all tabs fit a narrow phone without overflow
+00:07 +120: D:/tracking/dailymoney_flutter/test/narrow_layout_test.dart: all tabs fit a narrow phone without overflow
+00:07 +121: D:/tracking/dailymoney_flutter/test/narrow_layout_test.dart: all tabs fit a narrow phone without overflow
+00:08 +122: D:/tracking/dailymoney_flutter/test/help_centre_test.dart: Settings exposes one Help centre entry
+00:08 +123: D:/tracking/dailymoney_flutter/test/help_centre_test.dart: Settings exposes one Help centre entry
+00:08 +124: D:/tracking/dailymoney_flutter/test/help_centre_test.dart: Settings exposes one Help centre entry
+00:08 +125: D:/tracking/dailymoney_flutter/test/help_centre_test.dart: Settings exposes one Help centre entry
+00:08 +126: D:/tracking/dailymoney_flutter/test/help_centre_test.dart: Settings exposes one Help centre entry
+00:08 +127: D:/tracking/dailymoney_flutter/test/help_centre_test.dart: Settings exposes one Help centre entry
+00:08 +128: D:/tracking/dailymoney_flutter/test/help_centre_test.dart: Settings exposes one Help centre entry
+00:08 +129: D:/tracking/dailymoney_flutter/test/help_centre_test.dart: Settings exposes one Help centre entry
+00:08 +130: D:/tracking/dailymoney_flutter/test/help_centre_test.dart: Settings exposes one Help centre entry
+00:08 +131: D:/tracking/dailymoney_flutter/test/help_centre_test.dart: Settings exposes one Help centre entry
+00:08 +132: D:/tracking/dailymoney_flutter/test/help_centre_test.dart: Settings exposes one Help centre entry
+00:08 +133: D:/tracking/dailymoney_flutter/test/settings_budget_test.dart: Settings budget accepts grouped and decimal-comma amounts
+00:09 +134: D:/tracking/dailymoney_flutter/test/settings_budget_test.dart: Settings budget accepts grouped and decimal-comma amounts
+00:09 +135: D:/tracking/dailymoney_flutter/test/settings_budget_test.dart: Settings budget accepts grouped and decimal-comma amounts
+00:09 +136: D:/tracking/dailymoney_flutter/test/settings_budget_test.dart: Settings budget accepts grouped and decimal-comma amounts
+00:09 +137: D:/tracking/dailymoney_flutter/test/settings_budget_test.dart: Settings budget accepts grouped and decimal-comma amounts
+00:09 +138: D:/tracking/dailymoney_flutter/test/settings_budget_test.dart: Settings budget accepts grouped and decimal-comma amounts
+00:09 +139: D:/tracking/dailymoney_flutter/test/settings_budget_test.dart: Settings budget accepts grouped and decimal-comma amounts
+00:09 +140: D:/tracking/dailymoney_flutter/test/settings_budget_test.dart: Settings budget accepts grouped and decimal-comma amounts
+00:09 +141: D:/tracking/dailymoney_flutter/test/settings_budget_test.dart: Settings budget accepts grouped and decimal-comma amounts
+00:09 +142: D:/tracking/dailymoney_flutter/test/settings_budget_test.dart: Settings budget accepts grouped and decimal-comma amounts
+00:09 +143: D:/tracking/dailymoney_flutter/test/settings_budget_test.dart: Settings budget accepts grouped and decimal-comma amounts
+00:09 +144: D:/tracking/dailymoney_flutter/test/settings_budget_test.dart: Settings budget accepts grouped and decimal-comma amounts
+00:09 +145: D:/tracking/dailymoney_flutter/test/settings_budget_test.dart: Settings budget accepts grouped and decimal-comma amounts
+00:09 +146: D:/tracking/dailymoney_flutter/test/settings_budget_test.dart: Settings budget accepts grouped and decimal-comma amounts
+00:09 +147: D:/tracking/dailymoney_flutter/test/settings_budget_test.dart: Settings budget accepts grouped and decimal-comma amounts
+00:09 +148: D:/tracking/dailymoney_flutter/test/settings_budget_test.dart: Settings budget accepts grouped and decimal-comma amounts
+00:09 +149: D:/tracking/dailymoney_flutter/test/settings_budget_test.dart: Settings budget accepts grouped and decimal-comma amounts
+00:09 +150: D:/tracking/dailymoney_flutter/test/settings_budget_test.dart: Settings budget accepts grouped and decimal-comma amounts
+00:09 +151: D:/tracking/dailymoney_flutter/test/settings_budget_test.dart: Settings budget accepts grouped and decimal-comma amounts
+00:09 +152: D:/tracking/dailymoney_flutter/test/settings_budget_test.dart: Settings budget accepts grouped and decimal-comma amounts
+00:09 +153: D:/tracking/dailymoney_flutter/test/settings_budget_test.dart: Settings budget accepts grouped and decimal-comma amounts
+00:09 +154: D:/tracking/dailymoney_flutter/test/settings_budget_test.dart: Settings budget accepts grouped and decimal-comma amounts
+00:09 +155: D:/tracking/dailymoney_flutter/test/settings_budget_test.dart: Settings budget accepts grouped and decimal-comma amounts
+00:09 +156: D:/tracking/dailymoney_flutter/test/settings_budget_test.dart: Settings budget accepts grouped and decimal-comma amounts
+00:09 +157: D:/tracking/dailymoney_flutter/test/settings_budget_test.dart: Settings budget accepts grouped and decimal-comma amounts
+00:09 +158: D:/tracking/dailymoney_flutter/test/settings_budget_test.dart: Settings budget accepts grouped and decimal-comma amounts
+00:09 +159: D:/tracking/dailymoney_flutter/test/settings_budget_test.dart: Settings budget accepts grouped and decimal-comma amounts
+00:09 +160: D:/tracking/dailymoney_flutter/test/settings_budget_test.dart: Settings budget accepts grouped and decimal-comma amounts
+00:10 +161: D:/tracking/dailymoney_flutter/test/onboarding_legal_test.dart: guided tour tour is skippable and does not create records
+00:10 +162: D:/tracking/dailymoney_flutter/test/security_test.dart: wrong PINs trigger a persisted progressive cooldown
+00:12 +163: D:/tracking/dailymoney_flutter/test/security_test.dart: wrong PINs trigger a persisted progressive cooldown
+00:12 +164: D:/tracking/dailymoney_flutter/test/security_test.dart: wrong PINs trigger a persisted progressive cooldown
+00:12 +165: D:/tracking/dailymoney_flutter/test/security_test.dart: wrong PINs trigger a persisted progressive cooldown
+00:12 +166: D:/tracking/dailymoney_flutter/test/security_test.dart: wrong PINs trigger a persisted progressive cooldown
+00:12 +167: D:/tracking/dailymoney_flutter/test/security_test.dart: wrong PINs trigger a persisted progressive cooldown
+00:12 +168: D:/tracking/dailymoney_flutter/test/security_test.dart: wrong PINs trigger a persisted progressive cooldown
+00:13 +169: D:/tracking/dailymoney_flutter/test/security_test.dart: wrong PINs trigger a persisted progressive cooldown
+00:14 +170: D:/tracking/dailymoney_flutter/test/widget_test.dart: Home monthly bar shows the real over-budget amount
+00:14 +171: D:/tracking/dailymoney_flutter/test/security_test.dart: a correct PIN clears earlier failed attempts
+00:15 +172: D:/tracking/dailymoney_flutter/test/security_test.dart: a correct PIN clears earlier failed attempts
+00:17 +173: D:/tracking/dailymoney_flutter/test/security_test.dart: resetAll clears a cooldown and removes the PIN
+00:21 +174: All tests passed!

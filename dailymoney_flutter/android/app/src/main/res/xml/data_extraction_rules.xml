@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  DailyMoney keeps its vault key in the Android Keystore. A cloud backup or a
+  device-to-device transfer would copy encrypted preferences without that key,
+  so the restored app would look empty (and later writes could overwrite the
+  unreadable payloads). Backups are therefore disabled; Settings → Permissions
+  & data → Export a backup is the supported way to move data.
+-->
+<data-extraction-rules>
+    <cloud-backup>
+        <exclude domain="root" path="." />
+        <exclude domain="file" path="." />
+        <exclude domain="database" path="." />
+        <exclude domain="sharedpref" path="." />
+        <exclude domain="external" path="." />
+    </cloud-backup>
+    <device-transfer>
+        <exclude domain="root" path="." />
+        <exclude domain="file" path="." />
+        <exclude domain="database" path="." />
+        <exclude domain="sharedpref" path="." />
+        <exclude domain="external" path="." />
+    </device-transfer>
+</data-extraction-rules>
